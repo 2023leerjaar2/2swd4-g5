@@ -47,20 +47,20 @@ if (isset($_POST['login'])) {
     $username = $_POST['email-inlog'];
     $password = $_POST['password-inlogen'];
 
-    $sql = "SELECT id, Email FROM gebruikers WHERE Email = '$username' AND Wachtwoord = '$password'";
+    $sql = "SELECT ID , Email , Rol , Voornaam  FROM gebruikers WHERE Email = '$username' AND Wachtwoord = '$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
-        $id = $row['id'];
-        $username = $row['username'];
-        $role = $row['rol'];
+        $id = $row['ID'];
+        $voornaam = $row['Voornaam'];
+        $role = $row['Rol'];
 
         // Inloggen gelukt
-        $_SESSION["gebruikersnaam"] = $username;
         $_SESSION["gebruikers_id"] = $id; // Sla de gebruikers-ID op in de sessie
         $_SESSION["rol"] = $role; // Sla de rol op in de sessie
-        echo "<p>Welkom, $username!</p";
+        $_SESSION["voornaam"] = $voornaam; // Sla de voornaam op in de sessie om daara hoi te zeggen 
+        echo "<p>Welkom, $voornaam!</p";
 
         // Terug naar index.php na 3 seconden
         header("refresh:1;url=index.php");
