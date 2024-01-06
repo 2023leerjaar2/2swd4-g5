@@ -1,80 +1,59 @@
-<?php 
-
-// @todo: uit zoeken hoe blogpagina moet maken
-// @todo testen van pagina 
-// @todo stylen van pagina
-// @todo kopleings op pagina testen
-
-
-?>
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description"  content="blog website voor ala">
+    <meta name="keywords" content="ala , blog , php , leeren , nederlands , engels ,  bbq , 4 persoonen ">
+    <meta name="author" content="sjouk  , dani  , tim  ,  adam">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<?php
+if(session_status() == PHP_SESSION_NONE){
+    // Sessie is niet gestart, start er eenj
+    session_start();
+}
+require_once( "conection.php");
+require_once("header.php");
 
-    <a href="index.php">home</a>
-    <?php
-        // hier komt de blog pagina
+// hier komt pagina om resepten  te laten zien
 
-        session_start();
-        // controle of er ingelogd is
-        if (isset($_SESSION["gebruikers_id"])) {
-            echo "Welkom " . $_SESSION["voornaam"]; // dit staat er nu ff voor testen 
-            // ik heb tot nu toe alles zo gemaakt dat het heel dom er uit ziet 
-            
-            ?> 
-            <section class="wrapper-blog">
-                <article class="title-blog">
-                <h1>blog</h1>
-                </article>
-            </section><?php
-            require_once( "conection.php");
 
-?>            <!-- Het berichtformulier -->
-<form method="POST">
-    <input type="text" name="title" placeholder="Title">
-    <textarea name="message"></textarea>
-    <button type="submit">Post</button>
-</form> <?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Haal de berichtinhoud en titel op uit het formulier
-    $title = $_POST["title"];
-    $message = $_POST["message"];
-    $user_id = $_SESSION["gebruikers_id"]; // Haal de user_id op uit de sessie
-
-    // Sla het bericht op in de database
-    $sql = "INSERT INTO blog_posts (user_id, title, content) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iss", $user_id, $title, $message);
-    $stmt->execute();
+if(isset($_SESSION['rol']) && $_SESSION['rol'] == 1){
+?>  <a id='addbutton' href="blogadd.php">post toevoegen</a><?php
 }
 
-// Haal alle berichten op uit de database samen met de voornaam en achternaam van de gebruiker
-$sql = "SELECT blog_posts.*, gebruikers.voornaam, gebruikers.achternaam FROM blog_posts JOIN gebruikers ON blog_posts.user_id = gebruikers.ID";
-$result = $conn->query($sql);
-if (!$result) {
-    die("Query failed: " . $conn->error);
+// SQL-query om gegevens op te halen
+$sql = "SELECT id, title, image_path,  sort_description FROM blog_posts";
+$result = mysqli_query($conn, $sql);
+
+// Controleer of de query succesvol was
+if (mysqli_num_rows($result) > 0) {
+    // Door de resultaten itereren
+    echo "<section id='blog_container'>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<a class='blog_post' href='blogpost.php?id=" . $row["id"] . "'>";
+        echo "<h1 class='Title-blog'>Title: " . $row["title"]. "</h1>";
+        echo '<img class="fotoblog" src="' . $row["image_path"] . '" alt="Image"><br>';
+        echo "<p class='beschrijfing-blog'>kortebeschrijving: " . $row["sort_description"]. "</p>";
+        echo "</a>";
+    }
+    echo "</section>";
+} else {
+    echo "0 results";
 }
 ?>
-
-<!-- Toon alle berichten -->
-<?php while ($row = $result->fetch_assoc()): ?>
-<div>
-    <h2><?php echo $row["title"]; ?></h2>
-    <p><?php echo $row["content"]; ?></p>
-    <p>Posted by: <?php echo $row["voornaam"] . " " . $row["achternaam"]; ?></p>
-</div>
-<?php endwhile; ?>
-
+<section class="terug-button">
+<a id='backbutton' href='index.php'>back</a>
+</section>
 <?php
-        // hier word mesnen door gestuurd als ze niet ingelogd zijn
-         } else {
-             header("Location: login.php");
-         } ?>
+
+
+require_once("footer.php")
+
+?>
+<img src="/img/test.jpg" alt="">
 </body>
 </html>

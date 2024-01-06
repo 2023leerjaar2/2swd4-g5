@@ -4,16 +4,16 @@ $username = "root";
 $password = "Welkom01";
 $dbname = "databaseblog";
 
-try {
-    $conn = new mysqli($servername, $username, $password, $dbname);
-} catch (Exception $e) {
-    echo $e->getMessage();
-}
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-} else {
-  
 }
+
+// Connection successful
+
+
 // dit is om connectie te maken met de database
 ?>

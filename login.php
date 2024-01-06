@@ -1,12 +1,15 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/loginstyle.css">
+    <meta name="description"  content="blog website voor ala">
+    <meta name="keywords" content="ala , blog , php , leeren , nederlands , engels ,  bbq , 4 persoonen , inlogen ">
+    <meta name="author" content="sjouk  , dani  , tim  ,  adam">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loginpagina</title>
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
     
@@ -42,7 +45,10 @@ require_once("conection.php");
 
     <?php
 
-session_start();
+if(session_status() == PHP_SESSION_NONE){
+    // Sessie is niet gestart, start er eenj
+    session_start();
+}
 if (isset($_POST['login'])) {
     $username = $_POST['email-inlog'];
     $password = $_POST['password-inlogen'];
@@ -69,7 +75,15 @@ if (isset($_POST['login'])) {
     }
 }
 
+?> 
+</article> 
+<section class="logout button">
+<a href="logout.php">logout</a>
+</section>
 
 
-    ?>
+
+    <section class="terug-button">
+<a href='index.php'>home</a>
+</section>
 </article>
