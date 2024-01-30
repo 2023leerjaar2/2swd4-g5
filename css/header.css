@@ -1,0 +1,37 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
+/* styling voor header */
+/* Reset the list style */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center; /* Center the text */
+  }
+  
+  /* Style the list items */
+  nav ul li {
+    display: inline-block;
+    margin: 0 20px; /* Add space around each item */
+  }
+  
+  /* Style the links */
+  nav ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+  }
+  
+  /* Add a white border around the login link */
+  #login-id {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Center the logo */
+  nav ul li {
+    display: inline-block;
+    margin: 0 100px; /* Add space around each item */
+    vertical-align: middle; /* Align the content in the middle */
+  }
