@@ -8,6 +8,7 @@
     <meta name="author" content="sjouk  , dani  , tim  ,  adam">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <title>blog item toevoegen</title>
 </head>
 <body>
 <?php
@@ -30,7 +31,8 @@ if ($rol == 1) {
 
 <main>
 
-
+<section class="title-addpagina">
+<h1 id="title-69">blog item toevoegen</h1>
 <form action="" method="post" enctype="multipart/form-data"  id="form-blog">
     <label for="title">Titel:</label><br>
     <input type="text" id="title" name="title" id="title-input"><br>
@@ -44,13 +46,11 @@ if ($rol == 1) {
     <input type="url" id="url" name="url" id="url-input"><br>
     <input type="submit" value="Submit" id="submit-button">
 </form>
-
-
-
-
-<section class="terug-button">
-<a id='backbutton' href='blog.php'>back</a>
 </section>
+
+
+
+
 
 
 <?php
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
-    $sql = "INSERT INTO blog_posts ( user_id,  title, image_path, description, sort_description, external_url) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO blog_post ( user_id,  title, image_path, description, sort_description, external_url) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("isssss", $user_id, $title, $target_file, $description, $short_description, $url);
 

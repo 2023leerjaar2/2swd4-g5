@@ -13,34 +13,36 @@
 </head>
 <body>
     
-</body>
-</html>
+
+
 
 <?php
 require_once("conection.php");
 // hier kan je inloggen
+require_once("header2.php");
 ?>
-
+<main id="login-container">
     
-<article>
-    <section>
-        <h2>Login</h2>
-        <form action="" method="POST">
-            <section>
-                <label for="email">email</label>
-                <input type="email" name="email-inlog" id="email" required>
-            </section>
 
-            <section>
-                <label for="password">Password:</label>
-                <input type="password" name="password-inlogen" id="password" required>
-            </section>
+<section id="login-section">
+    <h2 id="title12">Login</h2>
+    <form action="" method="POST" class="login-form">
+        <section>
+            <label for="email" class="form-label">email</label>
+            <input type="email" name="email-inlog" id="email" class="form-input" required>
+        </section>
 
-            <section>
-                <button type="submit" name="login">Login</button>
-            </section>
-        </form>
-    </section>
+        <section>
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" name="password-inlogen" id="password" class="form-input" required>
+        </section>
+
+        <section>
+            <button type="submit" name="login" class="login-button">Login</button>
+        </section>
+    </form>
+
+</section>
 
 
     <?php
@@ -76,14 +78,15 @@ if (isset($_POST['login'])) {
 }
 
 ?> 
-</article> 
-<section class="logout button">
-<a href="logout.php">logout</a>
-</section>
 
 
 
-    <section class="terug-button">
-<a href='index.php'>home</a>
-</section>
-</article>
+
+
+
+</main>
+<?php
+require_once("footer.php");
+?>
+</body>
+</html>

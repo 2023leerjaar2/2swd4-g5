@@ -31,7 +31,7 @@ CREATE TABLE `gebruikers` (
   `Wachtwoord` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   CONSTRAINT `gebruikers_chk_1` CHECK (((`Rol` >= 1) and (`Rol` <= 3)))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `gebruikers` (
 
 LOCK TABLES `gebruikers` WRITE;
 /*!40000 ALTER TABLE `gebruikers` DISABLE KEYS */;
-INSERT INTO `gebruikers` VALUES (1,'admin1','admin','admin@admin.nl',1,'admin');
+INSERT INTO `gebruikers` VALUES (1,'admin','admin','admin@admin.nl',1,'admin'),(2,'test','test','test@test.nl',2,'admin'),(4,'sjouk','jonker','sjoukjonker13@gmail.com',2,'admin'),(5,'bob','bob','bob@bob.nl',2,'admin');
 /*!40000 ALTER TABLE `gebruikers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-06 15:34:59
+-- Dump completed on 2024-01-22 10:46:25

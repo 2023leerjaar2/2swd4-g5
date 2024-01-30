@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
     <?php
+    require_once("header.php");
     require_once("conection.php");
     if(session_status() == PHP_SESSION_NONE){
         // Sessie is niet gestart, start er eenj
@@ -29,18 +31,23 @@
     }
     ?>
 
-    <section class="uitloggen">
+<section id="logout-section">
+        <article id="logout-article">
+            <h1>Uitlog pagina </h1>
 
-    <h1>Uitlog pagina </h1>
+            <h3> weet je zekker dat je wild uit loggen?</h3>
+            <h3> als je dat wild druk dan op de knop</h3>
+            <form method="post">
+                <button type="submit">Uitloggen</button>
+            </form>
 
-    <h3> weet je zekker dat je wild uit loggen?</h3>
-    <h3> als je dat wild druk dan op de knop</h3>
-    <form method="post">
-        <button type="submit">Uitloggen</button>
-    </form>
-
-    <h3> zo niet druk dan op terug</h3>
-    <a href="index.php">terug</a>
+            <h3> zo niet druk dan op terug</h3>
+            <a href="persoonlijk.php">terug</a>
+        </article>
     </section>
+<?php
+require_once("footer.php");
+?>
+
 </body>
 </html>

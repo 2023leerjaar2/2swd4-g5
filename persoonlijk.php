@@ -16,7 +16,7 @@
 </head>
 <body>
 <?php
-    require_once("header.php");
+    require_once("header1.php");
     ?>
     <main>
 <main>
@@ -37,6 +37,7 @@ if (isset($_SESSION["gebruikers_id"])) {
     $user = mysqli_fetch_assoc($result);
 
     // Toon de gebruikersinformatie
+    echo "<section id='container-persoonlijk'>";
     echo "<h1 id='welkom-bericht'> Welkom " . $_SESSION["voornaam"] . " dit is je eigen pagina hier kan je infomatie aan passen wat je zelf wilt ". "</h1 ";
     echo "<section id='user-info'>";
     echo "<p id='voornaam'>Voornaam: " . $user['Voornaam'] . "</p>";
@@ -44,8 +45,9 @@ if (isset($_SESSION["gebruikers_id"])) {
     echo "<p id='email'>Email: " . $user['Email'] . "</p>";
     echo "<p id='wachtwoord'>Wachtwoord: laten we uit veiligheid niet zien</p>";
     echo "</section>";
+    echo "</section>";
     // hier onder is de form om de info van persoon te veranderen
-    
+    echo "<section id='updateForm' class='updateFormSection'>";
     echo "<h2 id='updateTitle'>Update je gegevens</h2>";
     echo "<form method='POST' action='' id='updateForm'>";
     echo "<label for='voornaam' class='inputLabel'>Voornaam:</label> <input type='text' name='voornaam' id='voornaam' value='" . $user['Voornaam'] . "'><br>";
@@ -54,13 +56,15 @@ if (isset($_SESSION["gebruikers_id"])) {
     echo "<label for='wachtwoord' class='inputLabel'>Wachtwoord:</label> <input type='password' name='wachtwoord' id='wachtwoord' value='" . $user['Wachtwoord'] . "'><br>";
     echo "<input type='submit' value='Update' id='submitButton'>";
     echo "</form>";
+    echo "</section>";
 
 ?>
 <section class="terug-button">
 <a id='backbutton' href='index.php'>back</a>
 </section>
-<?php
 
+
+<?php
    
 if (isset($_POST['voornaam'], $_POST['achternaam'], $_POST['email'])) {
     $gebruikers_id = $_SESSION["gebruikers_id"];
@@ -90,9 +94,15 @@ if (isset($_POST['voornaam'], $_POST['achternaam'], $_POST['email'])) {
 }
 
 
+
+
 ?>
 
 
 </main>    
+
+<?php
+    require_once("footer.php");
+    ?>
 </body>
 </html>

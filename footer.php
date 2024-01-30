@@ -3,7 +3,7 @@
 <head>
   <!-- ik denk dat hier geen head info nodig is omdat deze pagina word gebruikt als footer  -->
     <script src="https://kit.fontawesome.com/e3a4d4b711.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 <footer class="footer-distributed">
